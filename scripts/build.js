@@ -245,6 +245,8 @@ function release() {
     console.log('  git add -A && git commit -m "release: ' + newTags.join(', ') + '"');
     for (const t of newTags) console.log(`  git tag ${t}`);
     console.log('  git push origin main --tags');
+    console.log('  # 让 jsDelivr 镜像立即刷新商店列表（否则分支缓存最长 12 小时）');
+    console.log(`  curl -s https://purge.jsdelivr.net/gh/${REPO}@main/index.json`);
   }
 }
 

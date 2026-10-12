@@ -48,6 +48,7 @@ node scripts/build.js      # vendor libraries, write releases/*.json and index.j
 git add -A && git commit -m "release: …"
 git tag <id>-v<version>    # for every new version the script lists
 git push origin main --tags
+curl -s https://purge.jsdelivr.net/gh/TomEageer/claude-remote-plugins@main/index.json   # refresh the jsDelivr mirror
 ```
 
 Plugin development guide (manifest, message protocol, CSP, test harness): [docs/plugins.md](docs/plugins.md).
