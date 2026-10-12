@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>幻灯片预览</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="toolbar" id="toolbar" hidden>
+  <button class="btn" id="first" title="第一页"><svg viewBox="0 0 16 16"><path d="M4 3v10M12 3 7 8l5 5"/></svg></button>
+  <button class="btn" id="prev" title="上一页（左方向键）"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5"/></svg></button>
+  <span class="label page-label" id="pageLabel">1 / 1</span>
+  <button class="btn" id="next" title="下一页（右方向键）"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5"/></svg></button>
+  <button class="btn" id="last" title="最后一页"><svg viewBox="0 0 16 16"><path d="M12 3v10M4 3l5 5-5 5"/></svg></button>
+</div>
+<div class="content stage" id="viewer"><div id="slides" class="slides"></div></div>
+<div class="state" id="state"><div class="spinner"></div><div class="title">正在加载…</div></div>
+<script src="bridge.js"></script>
+<script src="vendor/pptx-preview.umd.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

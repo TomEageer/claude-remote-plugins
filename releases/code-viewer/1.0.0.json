@@ -1,0 +1,63 @@
+{
+ "schema": 2,
+ "id": "code-viewer",
+ "version": "1.0.0",
+ "tag": "code-viewer-v1.0.0",
+ "files": [
+  {
+   "path": "app.js",
+   "size": 8134,
+   "sha256": "0834fe8738ef23083d4a0ebd71681e257aa8fbef1d0fa1d37fb09b451c31b753"
+  },
+  {
+   "path": "bridge.js",
+   "size": 2241,
+   "sha256": "7b59d0362dd497318e2c6256321d3b6fcc9bf70cee316bcb76052bc227830a1c"
+  },
+  {
+   "path": "index.html",
+   "size": 1077,
+   "sha256": "c7d3744d9fc732571d9d9e28e6ae90f2fa63165302e023c4b6271933c2e53fd1"
+  },
+  {
+   "path": "manifest.json",
+   "size": 790,
+   "sha256": "405c1c029e6d28ddaf5e7b6e076b4f36aa182a81a83e99ed39c61c6bf750da76"
+  },
+  {
+   "path": "style.css",
+   "size": 7641,
+   "sha256": "1e1f88b8c75608190f45bd6e8a175440791fd6638dea618a0504e36c602c623d"
+  },
+  {
+   "path": "vendor/highlight.min.js",
+   "size": 169953,
+   "sha256": "924db75b5f6b43d9bdb6c595df33405890db8fd2dbc32dfb7785fadf0f42d5fe"
+  },
+  {
+   "path": "vendor/LICENSE-dompurify",
+   "size": 11358,
+   "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  {
+   "path": "vendor/LICENSE-highlight.js",
+   "size": 1514,
+   "sha256": "6c081431591d9df696c82dc598fe1423765b8a299b200ed00b281afd0f64c490"
+  },
+  {
+   "path": "vendor/LICENSE-marked",
+   "size": 2942,
+   "sha256": "8e3a3f82f59a60958f56ca08f445647c32a4733dc7ca6c2c46f6eb898471ab9c"
+  },
+  {
+   "path": "vendor/marked.umd.js",
+   "size": 47225,
+   "sha256": "f424dcb508fdf93e0137a970cfce8f3207ea2e3f37eca5f7556a52875683632a"
+  },
+  {
+   "path": "vendor/purify.min.js",
+   "size": 28885,
+   "sha256": "2c90a9b46d6463f26038a29b686e82bc91de01fdac9d5229e7cfe3b360134ea2"
+  }
+ ]
+}

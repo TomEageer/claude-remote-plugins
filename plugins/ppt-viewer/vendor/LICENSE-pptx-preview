@@ -1,0 +1,6 @@
+pptx-preview 1.0.7 - npm package license: ISC (https://www.npmjs.com/package/pptx-preview)
+Bundled: jszip (MIT), echarts (Apache-2.0), lodash (MIT), uuid (MIT), tslib (0BSD)
+
+Terms from the pptx-preview README: the published npm package may be used free of charge for
+personal and commercial purposes; its source code may not be republished. This plugin ships the
+unmodified npm build only inside the plugin package; it is not stored in the Claude Remote repository.

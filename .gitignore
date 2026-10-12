@@ -1,0 +1,4 @@
+node_modules/
+.DS_Store
+# 作者不允许再发布其代码：客户端直接从 npm CDN 下载
+plugins/ppt-viewer/vendor/pptx-preview.umd.js

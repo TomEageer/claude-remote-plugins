@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>PDF 预览</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="toolbar" id="toolbar" hidden>
+  <button class="btn" id="prev" title="上一页"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5"/></svg></button>
+  <input id="pageInput" class="page-input" type="text" inputmode="numeric" value="1" aria-label="页码">
+  <span class="label" id="pageCount">/ 1</span>
+  <button class="btn" id="next" title="下一页"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5"/></svg></button>
+  <span class="sep"></span>
+  <button class="btn" id="zoomOut" title="缩小"><svg viewBox="0 0 16 16"><path d="M3 8h10"/></svg></button>
+  <span class="label zoom-label" id="zoomLabel">100%</span>
+  <button class="btn" id="zoomIn" title="放大"><svg viewBox="0 0 16 16"><path d="M3 8h10M8 3v10"/></svg></button>
+  <button class="btn" id="fitWidth" title="适合宽度">适合宽度</button>
+  <button class="btn" id="fitPage" title="整页">整页</button>
+</div>
+<div class="content" id="viewer"><div class="pages" id="pages"></div></div>
+<div class="state" id="state"><div class="spinner"></div><div class="title">正在加载…</div></div>
+<script src="bridge.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

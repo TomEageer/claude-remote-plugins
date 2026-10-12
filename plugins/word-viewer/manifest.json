@@ -1,0 +1,13 @@
+{
+  "id": "word-viewer",
+  "name": "Word 预览",
+  "version": "1.0.0",
+  "description": "按页面版式预览 Word 文档（.docx），保留标题、表格与图片。",
+  "author": "Claude Remote",
+  "license": "MIT AND Apache-2.0",
+  "extensions": [
+    "docx"
+  ],
+  "entry": "index.html",
+  "minAppVersion": "1.3.0"
+}
