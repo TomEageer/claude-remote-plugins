@@ -1,7 +1,7 @@
 {
   "id": "excel-viewer",
   "name": "表格预览",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "以表格形式预览电子表格与 CSV，支持多工作表切换。",
   "author": "Claude Remote",
   "license": "MIT AND Apache-2.0",

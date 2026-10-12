@@ -345,6 +345,14 @@
       try { el.innerHTML = hljs.highlight(el.textContent, { language: lang, ignoreIllegals: true }).value; el.classList.add('hljs'); } catch (_) { /* 保持原样 */ }
     });
     md.querySelectorAll('a[href]').forEach((a) => { a.title = a.getAttribute('href'); });
+    // 表格外包一层横向滚动，列宽可以拖动
+    md.querySelectorAll('table').forEach((t) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'table-wrap';
+      t.replaceWith(wrap);
+      wrap.appendChild(t);
+      makeTableResizable(t);
+    });
     $('md').textContent = '';
     $('md').appendChild(md);
     state.mdReady = true;

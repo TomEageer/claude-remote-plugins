@@ -164,6 +164,7 @@
     }
     out.push('</tbody></table>');
     grid.innerHTML = out.join('');
+    makeTablesResizable(grid);
   }
 
   function setNotice(notes) {
