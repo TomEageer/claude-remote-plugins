@@ -61,17 +61,36 @@
     const { text, enc } = decodeText(u8, truncated);
     const lang = LANG[ext] || 'plaintext';
     const isMd = ext === 'md';
-    state = { text, lang, isMd, view: isMd ? 'doc' : 'src', srcReady: false, mdReady: false };
+    state = { text, raw: text, lang, isMd, view: isMd ? 'doc' : 'src', srcReady: false, mdReady: false };
+    // JSON：解析成功默认显示格式化，失败标出出错位置
+    state.isJson = ext === 'json' && !truncated;
+    if (state.isJson) {
+      try {
+        state.json = JSON.parse(text.replace(/^\uFEFF/, ''));
+        state.jv = 'pretty';
+        state.text = JSON.stringify(state.json, null, 2);
+      } catch (err) {
+        state.jsonError = describeJsonError(err, text);
+        state.jv = 'raw';
+      }
+    }
 
-    const lines = countLines(text);
+    const lines = countLines(state.text);
     $('info').textContent = [LANG_NAME[lang] || lang, lines.toLocaleString() + ' 行', enc, fmtSize(all.length)].join('  ·  ');
     const notes = [];
     if (truncated) notes.push(`文件较大（${fmtSize(all.length)}），只显示前 2 MB 的内容。`);
-    state.plain = u8.length > HIGHLIGHT_LIMIT && lang !== 'plaintext';
+    state.plain = state.text.length > HIGHLIGHT_LIMIT && lang !== 'plaintext';
     if (state.plain) notes.push('内容超过 1 MB，源码视图已关闭语法高亮。');
+    if (state.jsonError) notes.push(`JSON 格式有误：${state.jsonError.text}`);
     $('notice').textContent = notes.join(' ');
     $('notice').hidden = !notes.length;
+    $('notice').classList.toggle('err', !!state.jsonError);
     $('mdSwitch').hidden = !isMd;
+    $('jsonSwitch').hidden = !state.isJson || !!state.jsonError;
+    $('copyBtn').hidden = false;
+    $('treeTools').hidden = true;
+    $('tree').hidden = true;
+    if (state.isJson && !state.jsonError) markJsonView();
     $('toolbar').hidden = false;
     // 先让加载动画画出来，再做可能耗时的高亮
     await new Promise((r) => setTimeout(r, 16));
@@ -98,6 +117,7 @@
     } else {
       if (!state.srcReady) renderSource();
       $('md').hidden = true;
+      $('tree').hidden = true;
       $('code').hidden = false;
     }
     viewer.scrollTop = 0;
@@ -120,7 +140,185 @@
         $('src').textContent = body;
       }
     }
+    if (state.jsonError && state.jsonError.line) {
+      const g = $('gutter').textContent.split('\n');
+      g[state.jsonError.line - 1] = '▶ ' + g[state.jsonError.line - 1];
+      $('gutter').textContent = g.join('\n');
+      $('code').style.setProperty('--err-line', state.jsonError.line);
+      $('code').classList.add('has-err');
+    } else {
+      $('code').classList.remove('has-err');
+    }
     state.srcReady = true;
+  }
+
+  // ---------- JSON ----------
+  // JSON.parse 的报错在新版 Chromium 里不带位置，自己扫一遍找出第一个出错的位置
+  function findJsonErrorPos(t) {
+    let i = 0;
+    const ws = () => { while (i < t.length && ' \t\n\r'.includes(t[i])) i++; };
+    const fail = (why) => { const e = new Error(why); e.pos = i; throw e; };
+    const lit = (w) => { if (t.startsWith(w, i)) i += w.length; else fail('无法识别的值'); };
+    const str = () => {
+      i++;
+      while (i < t.length) {
+        const c = t[i];
+        if (c === '"') { i++; return; }
+        if (c === '\\') { i += 2; continue; }
+        if (c < ' ') fail('字符串里有未转义的换行或控制字符');
+        i++;
+      }
+      fail('字符串缺少结尾的引号');
+    };
+    const num = () => { const m = /^-?(0|[1-9]\d*)(\.\d+)?([eE][+-]?\d+)?/.exec(t.slice(i, i + 400)); if (!m || !m[0]) fail('数字格式不对'); i += m[0].length; };
+    const val = () => {
+      ws();
+      const c = t[i];
+      if (c === '{') {
+        i++; ws();
+        if (t[i] === '}') { i++; return; }
+        for (;;) {
+          ws(); if (t[i] !== '"') fail('这里应该是用双引号括起来的字段名'); str(); ws();
+          if (t[i] !== ':') fail('字段名后面缺少冒号'); i++; val(); ws();
+          if (t[i] === ',') { i++; continue; }
+          if (t[i] === '}') { i++; return; }
+          fail('缺少逗号或右花括号 }');
+        }
+      }
+      if (c === '[') {
+        i++; ws();
+        if (t[i] === ']') { i++; return; }
+        for (;;) {
+          val(); ws();
+          if (t[i] === ',') { i++; continue; }
+          if (t[i] === ']') { i++; return; }
+          fail('缺少逗号或右方括号 ]');
+        }
+      }
+      if (c === '"') return str();
+      if (c === 't') return lit('true');
+      if (c === 'f') return lit('false');
+      if (c === 'n') return lit('null');
+      if (c === '-' || (c >= '0' && c <= '9')) return num();
+      if (i >= t.length) fail('内容不完整，结尾缺少括号或引号');
+      fail(c === ',' ? '这里多了一个逗号' : `这里不应该出现「${c}」`);
+    };
+    try {
+      if (t.charCodeAt(0) === 0xfeff) i = 1;
+      val(); ws();
+      if (i < t.length) fail('JSON 已经结束，后面还有多余的内容');
+      return null;
+    } catch (e) {
+      return { pos: e.pos, why: e.message };
+    }
+  }
+
+  function describeJsonError(err, text) {
+    const found = findJsonErrorPos(text);
+    if (!found) return { line: null, col: null, text: String(err && err.message || err) };
+    const before = text.slice(0, found.pos);
+    const line = before.split('\n').length;
+    const col = found.pos - before.lastIndexOf('\n');
+    return { line, col, text: `第 ${line} 行第 ${col} 列，${found.why}` };
+  }
+
+  function markJsonView() {
+    document.querySelectorAll('#jsonSwitch .btn').forEach((b) => b.classList.toggle('active', b.dataset.jv === state.jv));
+  }
+
+  function setJsonView(v) {
+    if (!state || !state.isJson || state.jsonError) return;
+    state.jv = v;
+    markJsonView();
+    $('treeTools').hidden = v !== 'tree';
+    if (v === 'tree') {
+      if (!state.treeReady) { $('tree').textContent = ''; $('tree').appendChild(treeNode(null, state.json, 0)); state.treeReady = true; }
+      $('code').hidden = true;
+      $('tree').hidden = false;
+    } else {
+      state.text = v === 'pretty' ? JSON.stringify(state.json, null, 2) : v === 'min' ? JSON.stringify(state.json) : state.raw;
+      state.srcReady = false;
+      $('tree').hidden = true;
+      show('src');
+    }
+    viewer.scrollTop = 0;
+  }
+
+  const typeOf = (v) => (v === null ? 'null' : Array.isArray(v) ? 'array' : typeof v);
+
+  // 树形视图：子节点在第一次展开时才渲染，大文件也不卡
+  function treeNode(key, val, depth) {
+    const t = typeOf(val);
+    const row = document.createElement('div');
+    row.className = 'jn';
+    const head = document.createElement('div');
+    head.className = 'jh';
+    const k = key == null ? '' : `<span class="jk">${escapeHtml(String(key))}</span><span class="jp">: </span>`;
+    if (t === 'object' || t === 'array') {
+      const n = t === 'array' ? val.length : Object.keys(val).length;
+      head.innerHTML = `<span class="jt">▸</span>${k}<span class="jb">${t === 'array' ? '[' : '{'}</span><span class="jc">${n} ${t === 'array' ? '项' : '个字段'}</span><span class="jb">${t === 'array' ? ']' : '}'}</span>`;
+      head.classList.add('jx');
+      const kids = document.createElement('div');
+      kids.className = 'jk-kids';
+      kids.hidden = true;
+      row.append(head, kids);
+      const open = (yes) => {
+        if (yes && !kids.dataset.ready) {
+          const entries = t === 'array' ? val.map((v, i) => [i, v]) : Object.entries(val);
+          const frag = document.createDocumentFragment();
+          const MAX = 5000;
+          entries.slice(0, MAX).forEach(([kk, vv]) => frag.appendChild(treeNode(kk, vv, depth + 1)));
+          if (entries.length > MAX) { const more = document.createElement('div'); more.className = 'jmore'; more.textContent = `还有 ${entries.length - MAX} 项未显示`; frag.appendChild(more); }
+          kids.appendChild(frag);
+          kids.dataset.ready = '1';
+        }
+        kids.hidden = !yes;
+        row.classList.toggle('open', yes);
+      };
+      row._open = open;
+      head.addEventListener('click', () => open(kids.hidden));
+      if (depth < 2) open(true);
+    } else {
+      const shown = t === 'string' ? JSON.stringify(val) : String(val);
+      head.innerHTML = `<span class="jt sp"></span>${k}<span class="jv ${t}">${escapeHtml(shown.length > 2000 ? shown.slice(0, 2000) + '…' : shown)}</span>`;
+      row.appendChild(head);
+    }
+    return row;
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  }
+
+  // 全部展开最多处理 3000 个节点，避免超大 JSON 卡住
+  function expandAll(yes) {
+    let budget = 3000;
+    const walk = (row) => {
+      if (!row._open || budget-- <= 0) return;
+      row._open(yes);
+      if (yes) row.querySelectorAll(':scope > .jk-kids > .jn').forEach(walk);
+    };
+    if (yes) $('tree').querySelectorAll(':scope > .jn').forEach(walk);
+    else $('tree').querySelectorAll('.jn').forEach((r) => r._open && r._open(false));
+  }
+
+  // 复制当前视图的内容（跨源 iframe 里剪贴板 API 可能被拒，回退到 execCommand）
+  async function copyText() {
+    const text = state.isJson && state.jv === 'tree' ? JSON.stringify(state.json, null, 2) : state.text;
+    let ok = false;
+    try { await navigator.clipboard.writeText(text); ok = true; } catch (_) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { ok = document.execCommand('copy'); } catch (_) { ok = false; }
+      ta.remove();
+    }
+    const b = $('copyBtn');
+    b.textContent = ok ? '已复制' : '复制失败';
+    setTimeout(() => (b.textContent = '复制'), 1200);
   }
 
   function renderMarkdown() {
@@ -164,6 +362,10 @@
       if (target) target.scrollIntoView({ block: 'start' });
     }
   });
+  document.querySelectorAll('#jsonSwitch .btn').forEach((b) => b.addEventListener('click', () => setJsonView(b.dataset.jv)));
+  $('expandAll').addEventListener('click', () => expandAll(true));
+  $('collapseAll').addEventListener('click', () => expandAll(false));
+  $('copyBtn').addEventListener('click', () => state && copyText());
   $('viewDoc').addEventListener('click', () => state && show('doc'));
   $('viewSrc').addEventListener('click', () => state && show('src'));
 

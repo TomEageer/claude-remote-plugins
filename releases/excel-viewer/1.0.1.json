@@ -1,0 +1,48 @@
+{
+ "schema": 2,
+ "id": "excel-viewer",
+ "version": "1.0.1",
+ "tag": "excel-viewer-v1.0.1",
+ "files": [
+  {
+   "path": "app.js",
+   "size": 8189,
+   "sha256": "8595bb79327045528f5585d65e928633ea6283777e56d667dda7137e008d0c6e"
+  },
+  {
+   "path": "bridge.js",
+   "size": 2241,
+   "sha256": "7b59d0362dd497318e2c6256321d3b6fcc9bf70cee316bcb76052bc227830a1c"
+  },
+  {
+   "path": "icon.svg",
+   "size": 268,
+   "sha256": "756fd9d5699eeae2d783ff002c5c800755945276bd03c0c3fdd3ff0410e6ad7c"
+  },
+  {
+   "path": "index.html",
+   "size": 551,
+   "sha256": "4a494ee3bc0a24819c10b5650123bf3b15684754204d27d90928a5034ff07d06"
+  },
+  {
+   "path": "manifest.json",
+   "size": 384,
+   "sha256": "7a1bf83deb1b8da84dc6a9f5c557c78e74a2d845b331ae55187d93ca5e3dda58"
+  },
+  {
+   "path": "style.css",
+   "size": 5323,
+   "sha256": "7de33f4c2d26a23fe4e6d6c009b9eb581223cb4e99ae7d21474f4b500fb48412"
+  },
+  {
+   "path": "vendor/LICENSE-sheetjs",
+   "size": 11355,
+   "sha256": "4d2a38ac35cda06a555c84074a819d413339cd3691b822cae50f8f322fe01f64"
+  },
+  {
+   "path": "vendor/xlsx.full.min.js",
+   "size": 951904,
+   "sha256": "cc015130aa8521e7f088f88898eba949ccdcbfb38df0bd129b44b7273c3a6f41"
+  }
+ ]
+}

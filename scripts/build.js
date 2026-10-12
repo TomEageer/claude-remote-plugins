@@ -232,6 +232,9 @@ function release() {
       files: files.length,
       tag: rel.tag,
       release: `releases/${m.id}/${m.version}.json`,
+      // 商店列表直接带上图标（data URI，客户端只当图片显示）
+      icon: m.icon && fs.existsSync(path.join(dir, m.icon))
+        ? `data:image/svg+xml;base64,${fs.readFileSync(path.join(dir, m.icon)).toString('base64')}` : undefined,
     });
     console.log(`${(m.id + ' ' + m.version).padEnd(24)} ${String(files.length).padStart(4)} 个文件 ${(size / 1024).toFixed(0).padStart(6)} KB`);
   }

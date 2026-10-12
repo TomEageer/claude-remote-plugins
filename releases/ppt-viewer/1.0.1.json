@@ -1,0 +1,54 @@
+{
+ "schema": 2,
+ "id": "ppt-viewer",
+ "version": "1.0.1",
+ "tag": "ppt-viewer-v1.0.1",
+ "files": [
+  {
+   "path": "app.js",
+   "size": 4295,
+   "sha256": "ae388c43e5a0867aaab880eeec8802265637e14bc7e1d4a4e8f778167ff115fe"
+  },
+  {
+   "path": "bridge.js",
+   "size": 2241,
+   "sha256": "7b59d0362dd497318e2c6256321d3b6fcc9bf70cee316bcb76052bc227830a1c"
+  },
+  {
+   "path": "icon.svg",
+   "size": 297,
+   "sha256": "871d7ab4668ce9432681003b071a046ce10f7b5d017346f9489149680193a0d5"
+  },
+  {
+   "path": "index.html",
+   "size": 1119,
+   "sha256": "6c7701c8140e6c40210448f992781324f9aff05da0fe237429055ce0f637322b"
+  },
+  {
+   "path": "manifest.json",
+   "size": 352,
+   "sha256": "08bee4ce4775710f1aa41e8829ac33367a002c4289a5137c913e31bea0c33816"
+  },
+  {
+   "path": "style.css",
+   "size": 3772,
+   "sha256": "416e221c39a57a8cd54597b573365e370e778aa7de27c90ae417f11c91904503"
+  },
+  {
+   "path": "vendor/LICENSE-pptx-preview",
+   "size": 467,
+   "sha256": "c856c8b805afca3e7cee6e649f7727dbf27a11e16a86bad8477dbcf0ed032064"
+  },
+  {
+   "path": "vendor/pptx-preview.umd.js",
+   "size": 1362014,
+   "sha256": "98bcf8fbb5efb42dff406eeea7e7b9d7497a388955582e5b1815489c63c75fe2",
+   "urls": [
+    "https://cdn.jsdelivr.net/npm/pptx-preview@1.0.7/dist/pptx-preview.umd.js",
+    "https://fastly.jsdelivr.net/npm/pptx-preview@1.0.7/dist/pptx-preview.umd.js",
+    "https://gcore.jsdelivr.net/npm/pptx-preview@1.0.7/dist/pptx-preview.umd.js",
+    "https://unpkg.com/pptx-preview@1.0.7/dist/pptx-preview.umd.js"
+   ]
+  }
+ ]
+}

@@ -59,6 +59,7 @@ plugins/<id>/
 | `extensions` | 能预览的扩展名数组：小写、不带点 |
 | `entry` | 入口 HTML，相对插件目录 |
 | `minAppVersion` | 需要的最低主软件版本 |
+| `icon` | 可选：插件图标文件名（`icon.svg` 或 `.png`，不超过 64 KB），显示在插件页和商店里，只会被当作图片显示 |
 
 多个插件声明同一扩展名时，由主软件决定优先级（例如 csv 优先交给 excel-viewer）。
 
@@ -227,6 +228,7 @@ See the example in the Chinese section above. Fields:
 | `extensions` | Array of lower-case extensions without the dot |
 | `entry` | Entry HTML, relative to the plugin directory |
 | `minAppVersion` | Minimum app version required |
+| `icon` | Optional: icon file name (`icon.svg` or `.png`, at most 64 KB), shown on the plugins page and in the store; only ever rendered as an image |
 
 When several plugins claim the same extension, the app decides which one wins (e.g. csv goes to excel-viewer first).
 

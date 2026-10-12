@@ -9,6 +9,17 @@
 <div class="toolbar" id="toolbar" hidden>
   <span class="label" id="info"></span>
   <span class="spacer"></span>
+  <div class="seg" id="jsonSwitch" hidden>
+    <button class="btn" data-jv="pretty">格式化</button>
+    <button class="btn" data-jv="tree">树形</button>
+    <button class="btn" data-jv="min">压缩</button>
+    <button class="btn" data-jv="raw">原文</button>
+  </div>
+  <div class="seg" id="treeTools" hidden>
+    <button class="btn" id="expandAll">全部展开</button>
+    <button class="btn" id="collapseAll">全部折叠</button>
+  </div>
+  <button class="btn" id="copyBtn" hidden>复制</button>
   <div class="seg" id="mdSwitch" hidden>
     <button class="btn" id="viewDoc">文档</button>
     <button class="btn" id="viewSrc">源码</button>
@@ -18,6 +29,7 @@
 <div class="content" id="viewer">
   <div class="code" id="code" hidden><pre class="gutter" id="gutter" aria-hidden="true"></pre><pre class="src"><code class="hljs" id="src"></code></pre></div>
   <article class="markdown" id="md" hidden></article>
+  <div class="jtree" id="tree" hidden></div>
 </div>
 <div class="state" id="state"><div class="spinner"></div><div class="title">正在加载…</div></div>
 <script src="bridge.js"></script>

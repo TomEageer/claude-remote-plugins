@@ -128,3 +128,31 @@ body {
 }
 .markdown input[type="checkbox"] { margin: 0 .4em 0 -1.2em; vertical-align: middle; }
 .markdown blockquote > :last-child, .markdown li > :last-child { margin-bottom: 0; }
+
+/* ---------- JSON ---------- */
+.notice.err { color: #b3412f; background: #f8e4df; }
+[data-theme="dark"] .notice.err { color: #e0796a; background: #45282a; }
+#copyBtn { margin-left: 6px; }
+#treeTools { margin-left: 6px; }
+.jtree { padding: 12px 16px 24px; font: 12.5px/1.7 "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace; }
+.jn { padding-left: 16px; }
+.jtree > .jn { padding-left: 0; }
+.jh { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-radius: 4px; }
+.jh.jx { cursor: pointer; }
+.jh.jx:hover { background: rgba(127, 127, 127, .1); }
+.jt { display: inline-block; width: 14px; color: #9a968b; transition: transform .12s; }
+.jt.sp { visibility: hidden; }
+.jn.open > .jh > .jt { transform: rotate(90deg); }
+.jk { color: #8a4b2f; }
+[data-theme="dark"] .jk { color: #e3a37f; }
+.jp, .jb { color: #9a968b; }
+.jc { color: #9a968b; font-size: 11.5px; margin: 0 6px; }
+.jn.open > .jh > .jc, .jn.open > .jh > .jb:last-child { display: none; }
+.jv.string { color: #4f7a3a; }
+.jv.number { color: #2b5ea8; }
+.jv.boolean { color: #a8462b; }
+.jv.null { color: #9a968b; font-style: italic; }
+[data-theme="dark"] .jv.string { color: #9fcf86; }
+[data-theme="dark"] .jv.number { color: #8fb5f0; }
+[data-theme="dark"] .jv.boolean { color: #e0796a; }
+.jmore { padding-left: 30px; color: #9a968b; font-style: italic; }

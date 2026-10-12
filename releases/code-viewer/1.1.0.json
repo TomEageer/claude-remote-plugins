@@ -1,0 +1,68 @@
+{
+ "schema": 2,
+ "id": "code-viewer",
+ "version": "1.1.0",
+ "tag": "code-viewer-v1.1.0",
+ "files": [
+  {
+   "path": "app.js",
+   "size": 16826,
+   "sha256": "a2fa82c7d1b781f61cc42c50e6091d1f4f8dd27efaade561e39fc782be083580"
+  },
+  {
+   "path": "bridge.js",
+   "size": 2241,
+   "sha256": "7b59d0362dd497318e2c6256321d3b6fcc9bf70cee316bcb76052bc227830a1c"
+  },
+  {
+   "path": "icon.svg",
+   "size": 260,
+   "sha256": "035f2d71de1b16b500cc6776b0f98901bed4e938d0274eb204fc1d511b213c01"
+  },
+  {
+   "path": "index.html",
+   "size": 1630,
+   "sha256": "d73ecea8b706cd60e066a63f83ea6a01c748d9f949d7c50da374c0af345e68ae"
+  },
+  {
+   "path": "manifest.json",
+   "size": 865,
+   "sha256": "d8cc71ee87426825ad0d555fe55bf6107d50cab95b93b4d1fec7a2e7a15d2214"
+  },
+  {
+   "path": "style.css",
+   "size": 8972,
+   "sha256": "429494d65fcb61746480912ec2ef03f1f4f76a7ced7b4903263672429f01e97d"
+  },
+  {
+   "path": "vendor/highlight.min.js",
+   "size": 169953,
+   "sha256": "924db75b5f6b43d9bdb6c595df33405890db8fd2dbc32dfb7785fadf0f42d5fe"
+  },
+  {
+   "path": "vendor/LICENSE-dompurify",
+   "size": 11358,
+   "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  {
+   "path": "vendor/LICENSE-highlight.js",
+   "size": 1514,
+   "sha256": "6c081431591d9df696c82dc598fe1423765b8a299b200ed00b281afd0f64c490"
+  },
+  {
+   "path": "vendor/LICENSE-marked",
+   "size": 2942,
+   "sha256": "8e3a3f82f59a60958f56ca08f445647c32a4733dc7ca6c2c46f6eb898471ab9c"
+  },
+  {
+   "path": "vendor/marked.umd.js",
+   "size": 47225,
+   "sha256": "f424dcb508fdf93e0137a970cfce8f3207ea2e3f37eca5f7556a52875683632a"
+  },
+  {
+   "path": "vendor/purify.min.js",
+   "size": 28885,
+   "sha256": "2c90a9b46d6463f26038a29b686e82bc91de01fdac9d5229e7cfe3b360134ea2"
+  }
+ ]
+}
