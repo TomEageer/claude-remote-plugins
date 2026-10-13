@@ -321,6 +321,28 @@
     setTimeout(() => (b.textContent = '复制'), 1200);
   }
 
+  // 对中文友好的两条规则（和主界面一致）：单个 ~ 不当删除线（「7/1~8/13」「6~9 月」不被吞掉），
+  // ** 只要成对就加粗（「**结论。**后面的话」不再原样显示星号）
+  marked.use({
+    tokenizer: {
+      del(src) {
+        const m = /^~~(?=\S)([\s\S]*?\S)~~(?!~)/.exec(src);
+        if (m) return { type: 'del', raw: m[0], text: m[1], tokens: this.lexer.inlineTokens(m[1]) };
+        return undefined;
+      },
+    },
+    extensions: [{
+      name: 'cjkStrong',
+      level: 'inline',
+      start(src) { const i = src.indexOf('**'); return i < 0 ? undefined : i; },
+      tokenizer(src) {
+        const m = /^\*\*(?![\s*])([^*\n]*?[^\s*])\*\*(?!\*)/.exec(src);
+        if (m) return { type: 'strong', raw: m[0], text: m[1], tokens: this.lexer.inlineTokens(m[1]) };
+        return undefined;
+      },
+    }],
+  });
+
   function renderMarkdown() {
     const html = marked.parse(state.text, { gfm: true, breaks: false, async: false });
     const clean = DOMPurify.sanitize(html, { USE_PROFILES: { html: true }, FORBID_TAGS: ['style', 'form'] });
