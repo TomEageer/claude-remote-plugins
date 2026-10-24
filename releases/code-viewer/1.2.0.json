@@ -1,0 +1,78 @@
+{
+ "schema": 2,
+ "id": "code-viewer",
+ "version": "1.2.0",
+ "tag": "code-viewer-v1.2.0",
+ "files": [
+  {
+   "path": "app.js",
+   "size": 18383,
+   "sha256": "4bc9d16d3672535a7c30245d2a8d18c00c47237534ae618993acd3f99b2b71f7"
+  },
+  {
+   "path": "bridge.js",
+   "size": 2241,
+   "sha256": "7b59d0362dd497318e2c6256321d3b6fcc9bf70cee316bcb76052bc227830a1c"
+  },
+  {
+   "path": "colresize.js",
+   "size": 3913,
+   "sha256": "89df279a91ea52d54cfafcc71143b26c73111bfba9c076d9a228a580e90f6495"
+  },
+  {
+   "path": "find.js",
+   "size": 5761,
+   "sha256": "5d46e81fd858d54cbbcfbf40d5587a24c8f7ef1e88734bcc9dcd2e14d57d1be3"
+  },
+  {
+   "path": "icon.svg",
+   "size": 260,
+   "sha256": "035f2d71de1b16b500cc6776b0f98901bed4e938d0274eb204fc1d511b213c01"
+  },
+  {
+   "path": "index.html",
+   "size": 1699,
+   "sha256": "511b4b6ccfc12c3c3a144165642bceba60ac3e960f2b1f1b62908c4f49d305f8"
+  },
+  {
+   "path": "manifest.json",
+   "size": 1055,
+   "sha256": "e745afc025cb6145f23343f9da765fe561b9e99042ea5d5ca866b82dd60ed939"
+  },
+  {
+   "path": "style.css",
+   "size": 9803,
+   "sha256": "b7a5cecaced4d801a58909b4ab6bcb9857354a615497c884743ac5869f52ae48"
+  },
+  {
+   "path": "vendor/highlight.min.js",
+   "size": 181474,
+   "sha256": "4ed4f9d0d55240f2766d25fc59049f20cf4a8e46cbfd175c29a7f7ab01558667"
+  },
+  {
+   "path": "vendor/LICENSE-dompurify",
+   "size": 11358,
+   "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  {
+   "path": "vendor/LICENSE-highlight.js",
+   "size": 1514,
+   "sha256": "6c081431591d9df696c82dc598fe1423765b8a299b200ed00b281afd0f64c490"
+  },
+  {
+   "path": "vendor/LICENSE-marked",
+   "size": 2942,
+   "sha256": "8e3a3f82f59a60958f56ca08f445647c32a4733dc7ca6c2c46f6eb898471ab9c"
+  },
+  {
+   "path": "vendor/marked.umd.js",
+   "size": 47225,
+   "sha256": "f424dcb508fdf93e0137a970cfce8f3207ea2e3f37eca5f7556a52875683632a"
+  },
+  {
+   "path": "vendor/purify.min.js",
+   "size": 28885,
+   "sha256": "2c90a9b46d6463f26038a29b686e82bc91de01fdac9d5229e7cfe3b360134ea2"
+  }
+ ]
+}

@@ -13,12 +13,15 @@
     json: 'json', yaml: 'yaml', yml: 'yaml', toml: 'ini', ini: 'ini', conf: 'ini',
     xml: 'xml', html: 'xml', vue: 'xml', css: 'css', scss: 'scss', kt: 'kotlin', swift: 'swift',
     md: 'markdown', txt: 'plaintext', log: 'plaintext', csv: 'plaintext',
+    groovy: 'groovy', gradle: 'gradle', kts: 'kotlin', scala: 'scala', lua: 'lua', dart: 'dart', pl: 'perl', r: 'r',
+    proto: 'protobuf', properties: 'properties', cfg: 'ini', env: 'ini', jsp: 'xml', ftl: 'xml', vm: 'xml', tsv: 'plaintext',
   };
   const LANG_NAME = {
     javascript: 'JavaScript', typescript: 'TypeScript', python: 'Python', java: 'Java', go: 'Go', rust: 'Rust',
     c: 'C', cpp: 'C++', csharp: 'C#', ruby: 'Ruby', php: 'PHP', bash: 'Shell', powershell: 'PowerShell',
     dos: '批处理', sql: 'SQL', json: 'JSON', yaml: 'YAML', ini: '配置文件', xml: 'XML / HTML', css: 'CSS',
     scss: 'SCSS', kotlin: 'Kotlin', swift: 'Swift', markdown: 'Markdown', plaintext: '纯文本',
+    groovy: 'Groovy', gradle: 'Gradle', scala: 'Scala', lua: 'Lua', dart: 'Dart', perl: 'Perl', r: 'R', protobuf: 'Protobuf', properties: 'Properties',
   };
 
   let state = null; // { text, lang, isMd, view: 'doc' | 'src', srcReady, mdReady }

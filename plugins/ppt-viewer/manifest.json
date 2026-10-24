@@ -1,7 +1,7 @@
 {
   "id": "ppt-viewer",
   "name": "幻灯片预览",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "逐页预览 PowerPoint 演示文稿（.pptx），支持翻页。",
   "author": "Claude Remote",
   "license": "ISC AND MIT AND Apache-2.0 AND 0BSD",

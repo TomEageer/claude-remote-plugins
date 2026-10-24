@@ -1,0 +1,58 @@
+{
+ "schema": 2,
+ "id": "excel-viewer",
+ "version": "1.0.3",
+ "tag": "excel-viewer-v1.0.3",
+ "files": [
+  {
+   "path": "app.js",
+   "size": 8220,
+   "sha256": "a3b49733bcb339f2049cf80f6df2a16c4ea509d29a3521bf27c5b396896623b7"
+  },
+  {
+   "path": "bridge.js",
+   "size": 2241,
+   "sha256": "7b59d0362dd497318e2c6256321d3b6fcc9bf70cee316bcb76052bc227830a1c"
+  },
+  {
+   "path": "colresize.js",
+   "size": 3913,
+   "sha256": "89df279a91ea52d54cfafcc71143b26c73111bfba9c076d9a228a580e90f6495"
+  },
+  {
+   "path": "find.js",
+   "size": 5761,
+   "sha256": "5d46e81fd858d54cbbcfbf40d5587a24c8f7ef1e88734bcc9dcd2e14d57d1be3"
+  },
+  {
+   "path": "icon.svg",
+   "size": 268,
+   "sha256": "756fd9d5699eeae2d783ff002c5c800755945276bd03c0c3fdd3ff0410e6ad7c"
+  },
+  {
+   "path": "index.html",
+   "size": 620,
+   "sha256": "abfb0e3f453937aca59f7268bfd7ece1fa86a3737916a6a930f0f35f2752d79e"
+  },
+  {
+   "path": "manifest.json",
+   "size": 384,
+   "sha256": "9ef1c9165be4af02ad1524e15c65118c3842adbe5c803f79fae6d6b78e59d1f1"
+  },
+  {
+   "path": "style.css",
+   "size": 6114,
+   "sha256": "62674356424a62379193b32f526de5cf6056364c85567a44999da2aaaeb397bf"
+  },
+  {
+   "path": "vendor/LICENSE-sheetjs",
+   "size": 11355,
+   "sha256": "4d2a38ac35cda06a555c84074a819d413339cd3691b822cae50f8f322fe01f64"
+  },
+  {
+   "path": "vendor/xlsx.full.min.js",
+   "size": 951904,
+   "sha256": "cc015130aa8521e7f088f88898eba949ccdcbfb38df0bd129b44b7273c3a6f41"
+  }
+ ]
+}

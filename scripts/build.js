@@ -127,8 +127,22 @@ function vendor() {
           "import hljs from 'highlight.js/lib/common';",
           "import powershell from 'highlight.js/lib/languages/powershell';",
           "import dos from 'highlight.js/lib/languages/dos';",
+          "import groovy from 'highlight.js/lib/languages/groovy';",
+          "import gradle from 'highlight.js/lib/languages/gradle';",
+          "import scala from 'highlight.js/lib/languages/scala';",
+          "import lua from 'highlight.js/lib/languages/lua';",
+          "import dart from 'highlight.js/lib/languages/dart';",
+          "import properties from 'highlight.js/lib/languages/properties';",
+          "import protobuf from 'highlight.js/lib/languages/protobuf';",
           "hljs.registerLanguage('powershell', powershell);",
           "hljs.registerLanguage('dos', dos);",
+          "hljs.registerLanguage('groovy', groovy);",
+          "hljs.registerLanguage('gradle', gradle);",
+          "hljs.registerLanguage('scala', scala);",
+          "hljs.registerLanguage('lua', lua);",
+          "hljs.registerLanguage('dart', dart);",
+          "hljs.registerLanguage('properties', properties);",
+          "hljs.registerLanguage('protobuf', protobuf);",
           'window.hljs = hljs;',
         ].join('\n'),
         resolveDir: ROOT,
@@ -146,6 +160,11 @@ function vendor() {
     copy(nm('marked', 'LICENSE'), path.join(v, 'LICENSE-marked'));
     copy(nm('dompurify', 'dist', 'purify.min.js'), path.join(v, 'purify.min.js'));
     copy(nm('dompurify', 'LICENSE'), path.join(v, 'LICENSE-dompurify'));
+  }
+  // 公共的文档内查找（⌘F / Ctrl+F）：每个插件各带一份，保持自包含
+  for (const id of fs.readdirSync(PLUGINS)) {
+    // pdf-viewer 是把页面画在画布上，没有文字层，查不了，不带
+    if (id !== 'pdf-viewer' && fs.existsSync(path.join(PLUGINS, id, 'manifest.json'))) copy(path.join(__dirname, 'shared', 'find.js'), path.join(PLUGINS, id, 'find.js'));
   }
   console.log('vendor/ 已刷新');
 }
